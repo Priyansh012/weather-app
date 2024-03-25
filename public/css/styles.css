@@ -1,18 +1,62 @@
-
 .card {
-    width: 100%; 
-    height: 270px; 
-    padding: 5px; 
+    width: 100%;
+    height: 270px;
+    padding: 5px;
     box-sizing: border-box;
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
 }
 
 .card-body {
-    flex: 1; 
-    overflow: hidden; 
+    flex: 1;
+    overflow: hidden;
 }
 
 .col {
     padding: 0 2px;
 }
+
+.search-bar {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+.search-bar .form-control {
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+
+#suggestions {
+    position: absolute;
+    left: 418px;
+    width: 45%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1;
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;  
+}
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.input-group-custom .input-group-text {
+    width: 100px;
+    height: 100px;
+}
+
+.input-group-custom .form-control {
+    box-shadow: 0 3px 6px 0 rgba(32, 33, 36, 0.28);
+    border-radius: 20px;
+  }
