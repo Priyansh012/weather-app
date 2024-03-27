@@ -10,21 +10,19 @@ app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
     try {
+        const city = 'Long Beach';
         const response = await axios.get('http://api.weatherapi.com/v1/forecast.json', {
             params: {
                 key: apiKey,
-                q: 'Long Beach',
+                q: city,
                 aqi: 'yes',
                 alerts: 'yes',
                 days: 7
             }
         });
 
-        response.data.forecast.forecastday.forEach(day => {
-            day.day.condition.text = getShortDescription(day.day.condition.text);
-        });
-
-        res.render('index', { data: response.data });
+        const location = `${response.data.location.name}, ${response.data.location.region}, ${response.data.location.country}`;
+        res.render('index', { location: location, data: response.data });
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching weather data.');
@@ -37,21 +35,22 @@ app.listen(3000, () => {
 
 app.get('/weather', async (req, res) => {
     try {
+        const lat = req.query.lat;
+        const lon = req.query.lon;
+        const city = req.query.city || `${lat},${lon}`;
         const response = await axios.get('http://api.weatherapi.com/v1/forecast.json', {
             params: {
                 key: apiKey,
-                q: req.query.city,
+                q: city,
                 aqi: 'yes',
                 alerts: 'yes',
                 days: 7
             }
         });
 
-        response.data.forecast.forecastday.forEach(day => {
-            day.day.condition.text = getShortDescription(day.day.condition.text);
-        });
+        const location = `${response.data.location.name}, ${response.data.location.region}, ${response.data.location.country}`;
 
-        res.render('index', { data: response.data });
+        res.render('index', { location: location, data: response.data });
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching weather data.');
@@ -73,6 +72,31 @@ app.get('/autocomplete/:query', async (req, res) => {
     }
 });
 
+app.get('/weather-json', async (req, res) => {
+    try {
+        const lat = req.query.lat;
+        const lon = req.query.lon;
+        const city = req.query.city || `${lat},${lon}`;
+        const response = await axios.get('http://api.weatherapi.com/v1/forecast.json', {
+            params: {
+                key: apiKey,
+                q: city,
+                aqi: 'yes',
+                alerts: 'yes',
+                days: 7
+            }
+        });
+
+
+        const location = `${response.data.location.name}, ${response.data.location.region}, ${response.data.location.country}`;
+
+        res.json({ location: location, data: response.data });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while fetching weather data.');
+    }
+});
+
 
 function getShortDescription(conditionText) {
     const lowerCaseText = conditionText.toLowerCase();
@@ -85,5 +109,5 @@ function getShortDescription(conditionText) {
     if (lowerCaseText.includes('sleet')) return 'Sleet';
     if (lowerCaseText.includes('drizzle')) return 'Drizzle';
     if (lowerCaseText.includes('thunder')) return 'Thunder';
-    return conditionText; 
+    return conditionText;
 }

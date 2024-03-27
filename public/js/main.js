@@ -1,6 +1,7 @@
 const searchBox = document.getElementById('searchBox');
 const suggestionsBox = document.getElementById('suggestions');
 
+
 searchBox.addEventListener('input', () => {
     const inputText = searchBox.value;
 
@@ -41,4 +42,22 @@ function displaySuggestions(suggestions) {
     } else {
         suggestionsBox.style.display = 'none';
     }
+}
+
+function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
+    fetch(`/weather-json?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('searchBox').value = data.location;
+        })
+        .catch(error => console.error('Error:', error));
 }

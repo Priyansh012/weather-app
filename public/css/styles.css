@@ -26,13 +26,14 @@
 .search-bar .form-control {
     padding: 10px;
     font-size: 1.2em;
+    position: relative;
+    padding-left: 35px;
+    padding-right: 35px;
 }
-
 
 #suggestions {
     position: absolute;
-    left: 418px;
-    width: 45%;
+    width: 50%;
     max-height: 200px;
     overflow-y: auto;
     background-color: #fff;
@@ -40,8 +41,9 @@
     border-radius: 4px;
     z-index: 1;
     font-size: 1.2em;
-    font-family: Arial, sans-serif;  
+    font-family: Arial, sans-serif;
 }
+
 .suggestion-item {
     padding: 10px;
     cursor: pointer;
@@ -51,12 +53,29 @@
     background-color: #f0f0f0;
 }
 
-.input-group-custom .input-group-text {
-    width: 100px;
-    height: 100px;
+.input-icon-prefix, .input-icon-postfix {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
 }
 
-.input-group-custom .form-control {
-    box-shadow: 0 3px 6px 0 rgba(32, 33, 36, 0.28);
-    border-radius: 20px;
-  }
+.input-icon-prefix {
+    left: 10px;
+}
+
+.input-icon-prefix:hover {
+    cursor: pointer;
+}
+
+.input-icon-postfix {
+    right: 10px;
+}
+
+.input-group {
+    position: relative;
+}
+
+input.form-control {
+    outline: none;
+}

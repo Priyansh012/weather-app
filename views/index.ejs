@@ -12,24 +12,19 @@
 <body>
     <form autocomplete="off" action="/weather" method="get" class="search-bar">
         <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="fas fa-map-marker-alt"></i>
-              </span>
-            </div>
-            <input autocomplete="false" type="text" id="searchBox" name="city" class="form-control" placeholder="Type a city name...">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">
+            <input autocomplete="false" type="text" id="searchBox" name="city" class="form-control"
+                placeholder="Type a city name..." value="<%= location %>">
+            <i class="fas fa-map-marker-alt input-icon-prefix" onclick="getCurrentLocation()"></i>
+            <button type="submit" class="input-icon-postfix" style="background: none; border: none;">
                 <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </div>
+            </button>
+        </div>
         <div id="suggestions" class="suggestions"></div>
     </form>
     <div class="container">
         <div class="row">
             <% if (data && data.forecast && data.forecast.forecastday) { %>
-                <% data.forecast.forecastday.forEach(day=> { %>
+                <% data.forecast.forecastday.forEach((day, index) => { %>
                     <div class="col" style="padding: 0 5px;">
                         <div class="card">
                             <div class="card-body">
@@ -66,7 +61,7 @@
         </div>
     </div>
 
-    <script src="/js/autocomplete.js"></script>
+    <script src="/js/main.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </body>
 
