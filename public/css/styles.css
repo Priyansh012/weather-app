@@ -5,6 +5,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 }
 
 .card-body {
@@ -19,7 +20,7 @@
 .search-bar {
     display: block;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-top: 20px;
     width: 50%;
 }
 
@@ -78,4 +79,8 @@
 
 input.form-control {
     outline: none;
+}
+
+.newNav{
+    margin-top: 10px;
 }
