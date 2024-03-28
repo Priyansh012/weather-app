@@ -43,6 +43,9 @@
     z-index: 1;
     font-size: 1.2em;
     font-family: Arial, sans-serif;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .suggestion-item {
@@ -83,4 +86,24 @@ input.form-control {
 
 .newNav{
     margin-top: 10px;
+}
+
+@media print {
+    #spinner, .newNav {
+        display: none;
+    }
+    body {
+        background-color: white;
+        color: black;
+    }
+    .card {
+        page-break-inside: avoid;
+        width: 100%;
+    }
+}
+
+.spinner-border {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    display: none;
 }

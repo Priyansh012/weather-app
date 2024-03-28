@@ -43,8 +43,16 @@ function displaySuggestions(suggestions) {
             suggestionsBox.appendChild(div);
         });
         suggestionsBox.style.display = 'block';
+        setTimeout(() => {
+            suggestionsBox.style.transform = 'scaleY(1)';
+            suggestionsBox.style.opacity = '1';
+        }, 100)
     } else {
-        suggestionsBox.style.display = 'none';
+        suggestionsBox.style.transform = 'scaleY(0)';
+        suggestionsBox.style.opacity = '0';
+        setTimeout(() => {
+            suggestionsBox.style.display = 'none';
+        }, 300);
     }
 }
 
@@ -73,15 +81,22 @@ function showPosition(position) {
 }
 
 function showSpinnerAndHideCards() {
-    if (spinner) spinner.style.display = 'block';
+    if (spinner) {
+        spinner.style.display = 'block';
+        setTimeout(() => spinner.style.opacity = '1', 10);
+    }
     if (cardsContainer) cardsContainer.style.display = 'none';
 }
 
 function hideSpinnerAndShowCards() {
-    if (spinner) spinner.style.display = 'none';
+    if (spinner) spinner.style.opacity = '0';
+    setTimeout(() => {
+        if (spinner) spinner.style.display = 'none';
+    }, 500);
     if (cardsContainer) cardsContainer.style.display = 'flex';
+    
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     hideSpinnerAndShowCards();
 });
