@@ -1,6 +1,7 @@
 const searchBox = document.getElementById('searchBox');
 const suggestionsBox = document.getElementById('suggestions');
-
+const cardsContainer = document.querySelector('.container .row');
+const spinner = document.querySelector('.spinner-border');
 
 searchBox.addEventListener('input', () => {
     const inputText = searchBox.value;
@@ -29,12 +30,15 @@ function displaySuggestions(suggestions) {
     if (suggestions.length > 0) {
         suggestions.forEach(suggestion => {
             const div = document.createElement('div');
-            div.innerText = suggestion.name+", "+suggestion.region+", "+suggestion.country;
+            div.innerText = suggestion.name + ", " + suggestion.region + ", " + suggestion.country;
             div.classList.add('suggestion-item');
             div.addEventListener('click', () => {
                 searchBox.value = suggestion.name;
                 suggestionsBox.style.display = 'none';
-                document.querySelector('.search-bar').submit();
+                showSpinnerAndHideCards();
+                setTimeout(() => {
+                    document.querySelector('.search-bar').submit();
+                }, 250);
             });
             suggestionsBox.appendChild(div);
         });
@@ -44,20 +48,40 @@ function displaySuggestions(suggestions) {
     }
 }
 
+document.querySelector('.search-bar').addEventListener('submit', (e) => {
+    showSpinnerAndHideCards();
+});
+
 function getCurrentLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
+    } else {
         console.log("Geolocation is not supported by this browser.");
     }
 }
 
 function showPosition(position) {
-    console.log(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`);
     fetch(`/weather-json?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('searchBox').value = data.location;
+            showSpinnerAndHideCards();
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
+
+function showSpinnerAndHideCards() {
+    if (spinner) spinner.style.display = 'block';
+    if (cardsContainer) cardsContainer.style.display = 'none';
+}
+
+function hideSpinnerAndShowCards() {
+    if (spinner) spinner.style.display = 'none';
+    if (cardsContainer) cardsContainer.style.display = 'flex';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    hideSpinnerAndShowCards();
+});
