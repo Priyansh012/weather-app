@@ -35,9 +35,13 @@ app.get('/', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+if (process.env.NODE_ENV !== 'test') {
+    const port = 3000;
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  }
+  
 
 app.get('/weather', async (req, res) => {
     try {
@@ -125,3 +129,8 @@ function getShortDescription(conditionText) {
     if (lowerCaseText.includes('thunder')) return 'Thunder';
     return conditionText;
 }
+
+module.exports = {
+    app,
+    getShortDescription
+};

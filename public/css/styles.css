@@ -102,6 +102,23 @@ input.form-control {
     }
 }
 
+@media (max-width: 768px) {
+    .search-bar {
+        width: 90%;
+        font-size: 0.7em;
+    }
+    .col {
+        padding: 0 10px;
+    }
+    #suggestions {
+        width: 90%;
+    }
+    .card {
+        font-size: 0.7em;
+        padding: 10px;
+    }
+}
+
 .spinner-border {
     transition: opacity 0.5s ease;
     opacity: 0;

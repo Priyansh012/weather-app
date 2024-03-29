@@ -22,3 +22,10 @@ Please note that the `.env` file and the `fontawesome-free-6.5.1-web/` directory
 ## Using Font Awesome Icons
 
 This project uses Font Awesome icons. The icons are already included in the project files under `public/fontawesome-free-6.5.1-web/`. To use an icon in your HTML, you can use an `<i>` tag with the appropriate classes. For example, to use the cloud icon, you would use `<i class="fas fa-cloud"></i>`.
+
+## Testing
+
+This project uses [Jest](https://jestjs.io/) for testing.
+
+1. Run `npm install` to ensure Jest is installed. Jest is listed as a devDependency in `package.json`, so it should be installed with this command if it isn't already.
+2. Run the tests with the `npm test` command. This will run all test files in the project that match the `*.test.js` pattern.
