@@ -31,39 +31,46 @@
         </div>
         <div class="row">
             <% if (data) { %>
-                <% data.forEach((day, index) => { %>
+                <% data.forEach((day, index)=> { %>
                     <div class="col" style="padding: 0 5px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="display: flex; align-items: flex-start; flex-direction: column;">
-                                    <img src="<%= day.day.condition.icon %>" alt="Weather icon">
-                                    <div>
-                                        <h5 class="card-title">
-                                            <%= new Date(day.date).toLocaleString('en-us', {weekday:'short'}) + '.' %>
-                                            <%= new Date(day.date).getDate() %><sup><%= ['st', 'nd', 'rd'][((new Date(day.date).getDate() + 90) % 100 - 10) % 10 - 1] || 'th' %></sup>
-                                            <%= new Date(day.date).toLocaleString('en-us', {month:'short'}) + '.' %>
-                                        </h5>
-                                        <p class="card-text">
-                                            <%= day.day.condition.text %>
-                                        </p>
+                        <% let date=new Date(day.date); let year=date.getFullYear(); let month=('0' + (date.getMonth() +
+                            1)).slice(-2); let dayOfMonth=('0' + date.getDate()).slice(-2); let
+                            formattedDate=`${year}-${month}-${dayOfMonth}`; %>
+                            <div class="card" style="cursor: pointer;" onclick="highlightCard(this); window.location.href='/details/<%= formattedDate %>';" onblur="unhighlightCard(this);">                                <div class="card-body">
+                                    <div style="display: flex; align-items: flex-start; flex-direction: column;">
+                                        <img src="<%= day.day.condition.icon %>" alt="Weather icon">
+                                        <div>
+                                            <h5 class="card-title">
+                                                <%= new Date(day.date).toLocaleString('en-us', {weekday:'short'}) + '.'
+                                                    %>
+                                                    <%= new Date(day.date).getDate() %><sup>
+                                                            <%= ['st', 'nd' , 'rd' ][((new Date(day.date).getDate() +
+                                                                90) % 100 - 10) % 10 - 1] || 'th' %>
+                                                        </sup>
+                                                        <%= new Date(day.date).toLocaleString('en-us', {month:'short'})
+                                                            + '.' %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= day.day.condition.text %>
+                                            </p>
+                                        </div>
                                     </div>
+                                    <p class="card-text">
+                                        <strong>
+                                            <%= Math.ceil(day.day.maxtemp_f) %>°
+                                        </strong>
+                                        <%= Math.ceil(day.day.mintemp_f) %>°
+                                    </p>
+                                    <p class="card-text">
+                                        <strong>Humidity:</strong>
+                                        <%= day.day.avghumidity %>%
+                                    </p>
+                                    <p class="card-text">
+                                        <strong>Wind:</strong>
+                                        <%= day.day.maxwind_mph %> mph
+                                    </p>
                                 </div>
-                                <p class="card-text">
-                                    <strong>
-                                        <%= Math.ceil(day.day.maxtemp_f) %>°
-                                    </strong>
-                                    <%= Math.ceil(day.day.mintemp_f) %>°
-                                </p>
-                                <p class="card-text">
-                                    <strong>Humidity:</strong>
-                                    <%= day.day.avghumidity %>%
-                                </p>
-                                <p class="card-text">
-                                    <strong>Wind:</strong>
-                                    <%= day.day.maxwind_mph %> mph
-                                </p>
                             </div>
-                        </div>
                     </div>
                     <% }) %>
                         <% } %>
@@ -71,10 +78,13 @@
         <nav class="newNav">
             <ul class="pagination justify-content-end">
                 <li class="page-item <% if (page <= 1) { %>disabled<% } %>">
-                    <a class="page-link" href="<% if (page > 1) { %>/weather?city=<%= location %>&page=<%= page - 1 %><% } %>" tabindex="-1">Previous</a>
+                    <a id="previousButton" class="page-link"
+                        href="<% if (page > 1) { %>/weather?city=<%= location %>&page=<%= page - 1 %><% } %>"
+                        tabindex="-1">Previous</a>
                 </li>
                 <li class="page-item <% if (page * 5 >= 10) { %>disabled<% } %>">
-                    <a class="page-link" href="<% if (page * 5 < 10) { %>/weather?city=<%= location %>&page=<%= page + 1 %><% } %>">Next</a>
+                    <a id="nextButton" class="page-link"
+                        href="<% if (page * 5 < 10) { %>/weather?city=<%= location %>&page=<%= page + 1 %><% } %>">Next</a>
                 </li>
             </ul>
         </nav>
