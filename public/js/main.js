@@ -1,5 +1,4 @@
 const searchBox = document.getElementById('searchBox');
-let mainCity=searchBox.defaultValue;
 const suggestionsBox = document.getElementById('suggestions');
 const cardsContainer = document.querySelector('.container .row');
 const spinner = document.querySelector('.spinner-border');
@@ -168,3 +167,5 @@ if (window.location.pathname === '/') {
         })
         .catch(error => console.error('Error:', error));
 }
+
+module.exports = { showSpinnerAndHideCards };
