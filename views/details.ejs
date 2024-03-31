@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Weather Details</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f0f0f0;
-            }
-            .container {
-                width: 80%;
-                margin: 0 auto;
-                padding: 20px;
-            }
-            h1 {
-                color: #333;
-            }
-            p {
-                color: #666;
-                line-height: 1.6;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Weather Details</h1>
-            <p><strong>Date:</strong> <span id="date"></span></p>
-            <p><strong>Average Temperature:</strong> <span id="avgTemp"></span></p>
-            <p><strong>Maximum Temperature:</strong> <span id="maxTemp"></span></p>
-            <p><strong>Minimum Temperature:</strong> <span id="minTemp"></span></p>
-            <p><strong>Humidity:</strong> <span id="humidity"></span></p>
-            <p><strong>Sunrise:</strong> <span id="sunrise"></span></p>
-            <p><strong>Sunset:</strong> <span id="sunset"></span></p>
+
+<head>
+    <title>Weather Details</title>
+    <link rel="icon" href="/img/sun-and-rain_icon.ico">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/fontawesome-free-6.5.1-web/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="card card-details">
+            <div class="card-body">
+                <h1 class="text-dark">Weather Details</h1>
+                <p class="text-secondary"><strong>Date:</strong> <span id="date"></span></p>
+                <p class="text-secondary"><strong>Condition:</strong> <img id="conditionIcon"
+                        alt="Weather condition icon">
+                    <span id="conditionText"></span>
+                </p>
+                <p class="text-secondary"><strong>Average Temperature:</strong> <span id="avgTemp"></span> °F</p>
+                <p class="text-secondary"><strong>Maximum Temperature:</strong> <span id="maxTemp"></span> °F</p>
+                <p class="text-secondary"><strong>Minimum Temperature:</strong> <span id="minTemp"></span> °F</p>
+                <p class="text-secondary"><strong>Humidity:</strong> <span id="humidity"></span> %</p>
+                <p class="text-secondary"><strong>Max Wind:</strong> <span id="maxWind"></span> mp/h</p>
+                <p class="text-secondary"><strong>Sunrise:</strong> <span id="sunrise"></span></p>
+                <p class="text-secondary"><strong>Sunset:</strong> <span id="sunset"></span></p>
+                <p class="text-secondary"><strong>Total Precipitation:</strong> <span id="totalPrecip"></span></p>
+                <p class="text-secondary"><strong>UV Index:</strong> <span id="uvIndex"></span></p>
+            </div>
         </div>
-        <script src="/js/moreDetails.js"></script>
-    </body>
+    </div>
+    <script src="/js/moreDetails.js"></script>
+</body>
+
 </html>

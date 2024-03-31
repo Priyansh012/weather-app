@@ -36,7 +36,7 @@
                         <% let date=new Date(day.date); let year=date.getFullYear(); let month=('0' + (date.getMonth() +
                             1)).slice(-2); let dayOfMonth=('0' + date.getDate()).slice(-2); let
                             formattedDate=`${year}-${month}-${dayOfMonth}`; %>
-                            <div class="card" style="cursor: pointer;" onclick="highlightCard(this); window.location.href='/details/<%= formattedDate %>';" onblur="unhighlightCard(this);">                                <div class="card-body">
+                            <div class="card card-index" style="cursor: pointer;" onclick="highlightCard(this); window.location.href='/details/<%= formattedDate %>';" onblur="unhighlightCard(this);">                                <div class="card-body">
                                     <div style="display: flex; align-items: flex-start; flex-direction: column;">
                                         <img src="<%= day.day.condition.icon %>" alt="Weather icon">
                                         <div>
