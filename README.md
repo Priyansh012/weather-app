@@ -29,3 +29,32 @@ This project uses [Jest](https://jestjs.io/) for testing.
 
 1. Run `npm install` to ensure Jest is installed. Jest is listed as a devDependency in `package.json`, so it should be installed with this command if it isn't already.
 2. Run the tests with the `npm test` command. This will run all test files in the project that match the `*.test.js` pattern.
+
+## Features
+
+- **Weather Info**: Current weather and forecast for any location.
+- **Search**: Search functionality for weather data with auto suggestion API.
+- **Responsive**: Optimized for both desktop and mobile.
+- **Mobile and Print Optimized**: Enhanced for mobile and print.
+- **Caching**: Client-side caching for performance.
+- **Animations**: User experience enriched with animations.
+- **Testing**: Functionality tested with Jest.
+- **API**: Uses a [public API](https://www.weatherapi.com/) for weather data.
+
+## Screenshots
+
+- **Index Page**: 
+  
+  ![Index Page](public/assets/index.png)
+
+- **More Details Page**:   
+
+  ![More Details Page](public/assets/moreDetails.png)
+
+- **Loader Animation**: 
+
+  ![Loader Animation](public/assets/loader.gif)
+
+- **Auto suggestion animation in the search bar**:
+  
+  ![Suggestion Animation](public/assets/Animation.gif)
